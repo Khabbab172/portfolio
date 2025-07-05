@@ -72,7 +72,7 @@
 
     // You can uncomment below if you want the form to still submit to Google Forms:
     // this.submit();
-    disableAllButtons(form);
+    // disableAllButtons(form);
 
     var url = form.action;
     var xhr = new XMLHttpRequest();
