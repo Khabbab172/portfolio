@@ -3,7 +3,7 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches:
-      - main  # or your working branch
+      - main  # or your default branch
 
 permissions:
   contents: write
@@ -15,16 +15,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload Site
+      - name: Upload static files
         uses: actions/upload-pages-artifact@v2
         with:
-          path: .  # deploy root directory (can be 'dist' or 'build' if using a bundler)
+          path: .  # root directory (where your index.html is)
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
