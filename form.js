@@ -61,7 +61,19 @@
       return false;
     }
 
-    // disableAllButtons(form);
+     // Show the alert
+    const alert = document.getElementById("alert-success");
+    alert.classList.remove("hidden");
+
+    // Optional: hide after 5 seconds
+    setTimeout(() => {
+      alert.classList.add("hidden");
+    }, 5000);
+
+    // You can uncomment below if you want the form to still submit to Google Forms:
+    // this.submit();
+    disableAllButtons(form);
+
     var url = form.action;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url);
