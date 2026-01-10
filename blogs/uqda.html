@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_self">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UQDA – Visual DSA Editor | Khabbab Ahmed</title>
+    <meta name="description"
+        content="Deep dive into UQDA – a visual DSA editor built with React, Fabric.js, Go, and zero-downtime deployments.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#3B82F6",
+                        secondary: "#1E40AF",
+                        accent: "#10B981",
+                        dark: "#1F2937",
+                        light: "#F9FAFB"
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="font-sans bg-light text-dark">
+
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-sm z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-primary">KA</a>
+            <a href="index.html#projects" class="text-sm hover:text-primary">← Back to Portfolio</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <span class="text-sm text-accent font-semibold uppercase">Case Study</span>
+            <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                UQDA – A Visual DSA Editor for Interactive Learning
+            </h1>
+            <p class="text-lg text-gray-700">
+                UQDA is an interactive Data Structures & Algorithms editor where arrays,
+                trees, loops, and conditionals behave as real programmable objects — not static drawings.
+            </p>
+
+            <div class="flex flex-wrap gap-3 mt-6">
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">React</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Fabric.js</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Rough.js</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Go</span>
+                <span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm">Docker</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Content -->
+    <section class="py-20 bg-light">
+        <div class="container mx-auto px-6 max-w-4xl space-y-20">
+
+            <!-- Problem -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">The Problem</h2>
+                <p class="text-lg text-gray-700">
+                    Traditional DSA learning tools rely on static diagrams, pre-recorded animations,
+                    or whiteboards that lack interactivity. Learners struggle to visualize
+                    how data structures mutate in real time.
+                </p>
+            </div>
+
+            <!-- Solution -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">The Solution</h2>
+                <p class="text-lg text-gray-700 mb-4">
+                    UQDA treats data structures as first-class visual entities.
+                    Arrays, trees, loops, and conditionals are interactive objects with internal state,
+                    behavior, and identity.
+                </p>
+                <ul class="list-disc pl-6 text-lg text-gray-700 space-y-2">
+                    <li>Interactive arrays, trees, and linked structures</li>
+                    <li>Right-click context menus for operations</li>
+                    <li>Undo/redo using Command Pattern</li>
+                    <li>Sketch-style UI using Rough.js</li>
+                </ul>
+            </div>
+
+            <!-- Architecture -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Architecture Overview</h2>
+                <p class="text-lg text-gray-700 mb-6">
+                    The editor follows a clean MVC-inspired architecture to avoid canvas-level coupling.
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow space-y-4 text-lg">
+                    <p><strong>CanvasManager:</strong> Handles Fabric.js lifecycle and events</p>
+                    <p><strong>Shape Classes:</strong> Encapsulate drawing logic and metadata</p>
+                    <p><strong>Zustand Store:</strong> Source of truth for shape state</p>
+                    <p><strong>Command Pattern:</strong> Add, move, update with undo/redo support</p>
+                </div>
+            </div>
+
+            <!-- Backend -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Go Backend & Real-Time Foundation</h2>
+                <p class="text-lg text-gray-700 mb-4">
+                    A Go backend powers authentication, room management, and WebSocket signaling
+                    for collaborative sessions.
+                </p>
+                <ul class="list-disc pl-6 text-lg text-gray-700 space-y-2">
+                    <li>JWT-based authentication</li>
+                    <li>Room lifecycle management</li>
+                    <li>Prepared for CRDT sync using Yjs</li>
+                </ul>
+            </div>
+
+            <!-- Deployment -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Containerization & Zero-Downtime Deployment</h2>
+
+                <p class="text-lg text-gray-700 mb-6">
+                    The backend is containerized using Docker and deployed using
+                    blue-green and canary strategies to ensure uninterrupted sessions.
+                </p>
+
+                <div class="bg-white p-6 rounded-lg shadow space-y-4 text-lg">
+                    <p><strong>Blue-Green Deployment:</strong> Parallel environments with instant rollback</p>
+                    <p><strong>Canary Releases:</strong> Gradual rollout for risky WebSocket changes</p>
+                    <p><strong>Health Checks:</strong> /health and /ready endpoints for traffic switching</p>
+                </div>
+
+                <pre class="mt-6 bg-dark text-green-300 p-4 rounded-lg text-sm overflow-x-auto font-mono">
+Build → Test → Dockerize → Deploy → Health Check → Traffic Switch
+      </pre>
+            </div>
+
+            <!-- Why it matters -->
+            <div>
+                <h2 class="text-3xl font-bold mb-4">Why UQDA Matters</h2>
+                <p class="text-lg text-gray-700">
+                    UQDA bridges the gap between abstract algorithms and concrete understanding.
+                    By combining visual programming, clean architecture, and production-grade deployment,
+                    it moves beyond demos into a scalable educational platform.
+                </p>
+            </div>
+
+            <!-- CTA -->
+            <div class="text-center pt-10">
+                <a href="https://uqda.vercel.app/"
+                    class="inline-block bg-primary hover:bg-secondary text-white px-8 py-4 rounded-lg text-lg transition-colors">
+                    Visit Live Project
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-t from-black via-gray-900 to-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">© 2023 Khabbab Ahmed</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
